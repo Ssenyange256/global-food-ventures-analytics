@@ -1,0 +1,49 @@
+// =============================================================================
+// File    : 01_core_measures.dax
+// Purpose : Foundational measures used across the Global Food Ventures model.
+//           These measures aggregate the FactSales table. They are intended
+//           to be additive and safe to use in any visual context.
+// =============================================================================
+
+// ---- REVENUE --------------------------------------------------------------
+Total Revenue =
+    SUM ( FactSales[NetRevenue] )
+
+Gross Revenue =
+    SUM ( FactSales[GrossRevenue] )
+
+Total Discount =
+    [Gross Revenue] - [Total Revenue]
+
+Discount % =
+    DIVIDE ( [Total Discount], [Gross Revenue] )
+
+// ---- COST & MARGIN --------------------------------------------------------
+Total COGS =
+    SUM ( FactSales[COGS] )
+
+Gross Margin =
+    [Total Revenue] - [Total COGS]
+
+Gross Margin % =
+    DIVIDE ( [Gross Margin], [Total Revenue] )
+
+// ---- VOLUME ---------------------------------------------------------------
+Units Sold =
+    SUM ( FactSales[Quantity] )
+
+Average Selling Price =
+    DIVIDE ( [Total Revenue], [Units Sold] )
+
+// ---- ACTIVITY -------------------------------------------------------------
+Order Count =
+    DISTINCTCOUNT ( FactSales[OrderID] )
+
+Active Customers =
+    DISTINCTCOUNT ( FactSales[CustomerID] )
+
+Average Order Value =
+    DIVIDE ( [Total Revenue], [Order Count] )
+
+Revenue per Customer =
+    DIVIDE ( [Total Revenue], [Active Customers] )

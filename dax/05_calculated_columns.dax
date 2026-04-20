@@ -1,0 +1,23 @@
+// =============================================================================
+// File    : 05_calculated_columns.dax
+// Purpose : Calculated columns (model-side). Prefer Power Query where possible;
+//           these are only used when the column depends on the model context.
+// =============================================================================
+
+// On DimProducts — margin band used for colour-coded slicers
+DimProducts[MarginBand] =
+    SWITCH (
+        TRUE (),
+        DimProducts[UnitMarginPct] >= 0.55, "High",
+        DimProducts[UnitMarginPct] >= 0.35, "Healthy",
+        DimProducts[UnitMarginPct] >= 0.15, "Thin",
+        "Loss"
+    )
+
+// On DimCustomers — cohort year derived from onboarded date
+DimCustomers[CohortYear] =
+    YEAR ( DimCustomers[OnboardedDate] )
+
+// On FactSales — line-item profitability flag for drill-through
+FactSales[IsProfitableLine] =
+    FactSales[GrossMargin] > 0

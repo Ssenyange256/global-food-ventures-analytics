@@ -1,0 +1,59 @@
+// =============================================================================
+// File    : 04_customer_and_product.dax
+// Purpose : Slicing-and-ranking measures for customer and product analysis.
+//           These measures rely on the dimension tables from Power Query.
+// =============================================================================
+
+// ---- CUSTOMER -------------------------------------------------------------
+New Customers =
+    VAR _FirstOrder =
+        CALCULATETABLE (
+            SUMMARIZE ( FactSales, FactSales[CustomerID], "FirstDate", MIN ( FactSales[OrderDate] ) ),
+            ALL ( 'Calendar' )
+        )
+    VAR _InPeriod =
+        FILTER ( _FirstOrder, [FirstDate] >= MIN ( 'Calendar'[Date] ) && [FirstDate] <= MAX ( 'Calendar'[Date] ) )
+    RETURN
+        COUNTROWS ( _InPeriod )
+
+Customer Concentration Top 5 =
+    VAR _TopN  =
+        TOPN ( 5, VALUES ( DimCustomers[CustomerID] ), [Total Revenue], DESC )
+    VAR _TopRev =
+        CALCULATE ( [Total Revenue], KEEPFILTERS ( _TopN ) )
+    RETURN
+        DIVIDE ( _TopRev, [Total Revenue] )
+
+Average Days Since Last Order =
+    AVERAGEX (
+        VALUES ( DimCustomers[CustomerID] ),
+        VAR _Last = CALCULATE ( MAX ( FactSales[OrderDate] ) )
+        RETURN
+            IF ( ISBLANK ( _Last ), BLANK (), DATEDIFF ( _Last, TODAY (), DAY ) )
+    )
+
+// ---- PRODUCT --------------------------------------------------------------
+Rank by Revenue =
+    IF (
+        HASONEVALUE ( DimProducts[ProductID] ),
+        RANKX ( ALL ( DimProducts[ProductID] ), [Total Revenue],, DESC, DENSE )
+    )
+
+Category Share % =
+    DIVIDE (
+        [Total Revenue],
+        CALCULATE ( [Total Revenue], ALL ( DimProducts[ProductID] ) )
+    )
+
+Units per Order =
+    DIVIDE ( [Units Sold], [Order Count] )
+
+// ---- SHIPPING / OPERATIONS ------------------------------------------------
+Average Lead Time (Days) =
+    AVERAGE ( FactSales[LeadTimeDays] )
+
+On-Time Ship % =
+    VAR _Target = 5    // days considered "on time"
+    VAR _OnTime = CALCULATE ( [Order Count], FactSales[LeadTimeDays] <= _Target )
+    RETURN
+        DIVIDE ( _OnTime, [Order Count] )

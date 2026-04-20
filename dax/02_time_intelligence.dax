@@ -1,0 +1,68 @@
+// =============================================================================
+// File    : 02_time_intelligence.dax
+// Purpose : Time-intelligence measures layered on top of [Total Revenue].
+//           Requires the Calendar table to be marked as a Date Table and
+//           to contain contiguous dates across the full analysis window.
+// =============================================================================
+
+// ---- YEAR-TO-DATE ---------------------------------------------------------
+Revenue YTD =
+    TOTALYTD ( [Total Revenue], 'Calendar'[Date] )
+
+Revenue YTD (Fiscal) =
+    TOTALYTD ( [Total Revenue], 'Calendar'[Date], "30/06" )   // FY ends 30 June
+
+Gross Margin YTD =
+    TOTALYTD ( [Gross Margin], 'Calendar'[Date] )
+
+// ---- PARALLEL PERIODS -----------------------------------------------------
+Revenue PY =
+    CALCULATE (
+        [Total Revenue],
+        SAMEPERIODLASTYEAR ( 'Calendar'[Date] )
+    )
+
+Revenue PY YTD =
+    CALCULATE (
+        [Revenue YTD],
+        SAMEPERIODLASTYEAR ( 'Calendar'[Date] )
+    )
+
+Revenue PM =
+    CALCULATE (
+        [Total Revenue],
+        DATEADD ( 'Calendar'[Date], -1, MONTH )
+    )
+
+// ---- GROWTH ---------------------------------------------------------------
+Revenue YoY $ =
+    [Total Revenue] - [Revenue PY]
+
+Revenue YoY % =
+    DIVIDE ( [Revenue YoY $], [Revenue PY] )
+
+Revenue MoM $ =
+    [Total Revenue] - [Revenue PM]
+
+Revenue MoM % =
+    DIVIDE ( [Revenue MoM $], [Revenue PM] )
+
+// ---- ROLLING WINDOWS ------------------------------------------------------
+Revenue Rolling 3M =
+    CALCULATE (
+        [Total Revenue],
+        DATESINPERIOD ( 'Calendar'[Date], MAX ( 'Calendar'[Date] ), -3, MONTH )
+    )
+
+Revenue Rolling 12M =
+    CALCULATE (
+        [Total Revenue],
+        DATESINPERIOD ( 'Calendar'[Date], MAX ( 'Calendar'[Date] ), -12, MONTH )
+    )
+
+// ---- SHIP-DATE VIEW (inactive relationship) -------------------------------
+Revenue by Ship Date =
+    CALCULATE (
+        [Total Revenue],
+        USERELATIONSHIP ( FactSales[ShipDate], 'Calendar'[Date] )
+    )

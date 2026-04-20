@@ -1,0 +1,49 @@
+// =============================================================================
+// File    : 03_targets_and_attainment.dax
+// Purpose : Variance analysis against the regional monthly targets loaded
+//           into FactTargets. The Calendar[Date] <-> FactTargets[TargetDate]
+//           relationship is one-to-many at month granularity.
+// =============================================================================
+
+Revenue Target =
+    SUM ( FactTargets[RevenueTarget] )
+
+Variance $ =
+    [Total Revenue] - [Revenue Target]
+
+Variance % =
+    DIVIDE ( [Variance $], [Revenue Target] )
+
+Attainment % =
+    DIVIDE ( [Total Revenue], [Revenue Target] )
+
+// Color-coding helper for conditional formatting
+Attainment Colour =
+    SWITCH (
+        TRUE (),
+        [Attainment %] >= 1.05, "#1B9E77",   // green — exceeding
+        [Attainment %] >= 0.95, "#E6AB02",   // amber — on track
+        "#D73027"                             // red  — below
+    )
+
+// Running attainment across the selected period
+Revenue Cumulative =
+    CALCULATE (
+        [Total Revenue],
+        FILTER (
+            ALLSELECTED ( 'Calendar' ),
+            'Calendar'[Date] <= MAX ( 'Calendar'[Date] )
+        )
+    )
+
+Target Cumulative =
+    CALCULATE (
+        [Revenue Target],
+        FILTER (
+            ALLSELECTED ( 'Calendar' ),
+            'Calendar'[Date] <= MAX ( 'Calendar'[Date] )
+        )
+    )
+
+Cumulative Attainment % =
+    DIVIDE ( [Revenue Cumulative], [Target Cumulative] )
