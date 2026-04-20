@@ -1,0 +1,22 @@
+# Power BI
+*.pbix
+*.pbit
+*.pbip/.cache/
+*.pbip/Model/.cache/
+
+# Local data
+data/local/
+data/*.xlsx
+*.bak
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+
+# Environment
+.env
+secrets.json
