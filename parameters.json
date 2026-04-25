@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "project": "Global Food Ventures Analytics",
+  "description": "Power BI parameter definitions. Import these into Power BI Desktop as a Power Query parameter or use pDataFolder directly in each .pq file.",
+  "parameters": {
+    "pDataFolder": {
+      "type": "Text",
+      "defaultValue": "C:\\GFV\\data\\",
+      "description": "Root folder containing the CSV source files. Update this path to match your local environment before loading queries in Power BI Desktop.",
+      "suggestedValues": [
+        "C:\\GFV\\data\\",
+        "D:\\Projects\\global-food-ventures-analytics\\data\\",
+        "./data/"
+      ]
+    },
+    "pFiscalYearStartMonth": {
+      "type": "Number",
+      "defaultValue": 7,
+      "description": "Month number (1-12) on which the fiscal year begins. GFV fiscal year starts in July."
+    },
+    "pCalendarStart": {
+      "type": "Date",
+      "defaultValue": "2023-01-01",
+      "description": "First date of the Calendar dimension. Extend earlier if historical data is loaded."
+    },
+    "pCalendarEnd": {
+      "type": "Date",
+      "defaultValue": "2025-12-31",
+      "description": "Last date of the Calendar dimension. Extend to cover future target periods."
+    },
+    "pOnTimeThresholdDays": {
+      "type": "Number",
+      "defaultValue": 5,
+      "description": "Lead-time (days) at or below which a shipment is considered on-time. Matches the DAX On-Time Ship % measure."
+    }
+  },
+  "dataSourceProfiles": {
+    "local_csv": {
+      "description": "Default local CSV files — used for development and portfolio demo.",
+      "pDataFolder": "C:\\GFV\\data\\"
+    },
+    "repo_relative": {
+      "description": "Paths relative to the cloned repository root — useful on macOS / Linux.",
+      "pDataFolder": "./data/"
+    }
+  }
+}

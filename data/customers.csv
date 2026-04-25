@@ -1,0 +1,21 @@
+CustomerID,CustomerName,Region,Channel,Country,OnboardedDate
+CUST-001,Nairobi Gourmet Market,East Africa,Wholesale,Kenya,2022-03-15
+CUST-002,Kampala Food Distributors,East Africa,Distributor,Uganda,2021-07-01
+CUST-003,Dar es Salaam Imports,East Africa,Direct,Tanzania,2023-01-10
+CUST-004,Lagos Organic Hub,West Africa,Wholesale,Nigeria,2021-05-20
+CUST-005,Accra Specialty Foods,West Africa,Distributor,Ghana,2022-09-05
+CUST-006,Abidjan Market Group,West Africa,E-commerce,Ivory Coast,2023-04-18
+CUST-007,Cape Town Fine Foods,Southern Africa,Direct,South Africa,2020-11-12
+CUST-008,Johannesburg Wholesale,Southern Africa,Wholesale,South Africa,2021-02-28
+CUST-009,Cairo Import House,North Africa,Distributor,Egypt,2022-06-15
+CUST-010,Casablanca Epicerie,North Africa,E-commerce,Morocco,2023-02-20
+CUST-011,Dubai Exotic Foods,Middle East,Distributor,UAE,2021-09-10
+CUST-012,Riyadh Specialty Market,Middle East,Wholesale,Saudi Arabia,2022-11-01
+CUST-013,London African Foods,Europe,E-commerce,United Kingdom,2020-08-15
+CUST-014,Amsterdam Global Market,Europe,Distributor,Netherlands,2021-04-22
+CUST-015,Paris Afrique Gourmande,Europe,Direct,France,2022-07-30
+CUST-016,New York African Pantry,North America,E-commerce,USA,2021-12-10
+CUST-017,Toronto Global Foods,North America,Distributor,Canada,2022-05-14
+CUST-018,Chicago Diaspora Market,North America,Wholesale,USA,2023-03-08
+CUST-019,Sydney African Market,Oceania,E-commerce,Australia,2022-01-25
+CUST-020,Auckland World Foods,Oceania,Direct,New Zealand,2023-06-01
