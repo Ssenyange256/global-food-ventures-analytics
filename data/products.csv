@@ -1,0 +1,26 @@
+ProductID,ProductName,Category,SubCategory,Brand,UnitPrice,UnitCost,UnitMarginPct
+GFV-C001,Ethiopian Yirgacheffe Coffee,Coffee,Single Origin,AfriBean,24.99,9.0,0.64
+GFV-C002,Kenyan AA Coffee,Coffee,Single Origin,AfriBean,22.99,8.5,0.63
+GFV-C003,Rwandan Bourbon Blend,Coffee,Blend,AfriBean,19.99,7.5,0.625
+GFV-C004,Ugandan Robusta,Coffee,Single Origin,AfriBean,17.99,7.0,0.611
+GFV-S001,Zanzibar Cloves,Spices,Whole,SpiceRoute,12.99,4.5,0.654
+GFV-S002,Ethiopian Berbere Mix,Spices,Blend,SpiceRoute,9.99,3.5,0.65
+GFV-S003,Moroccan Ras el Hanout,Spices,Blend,SpiceRoute,11.99,4.0,0.666
+GFV-S004,West African Suya Spice,Spices,Blend,SpiceRoute,8.99,3.5,0.611
+GFV-F001,Cassava Flour,Flours,Root,MillGold,6.99,3.0,0.571
+GFV-F002,Teff Flour,Flours,Grain,MillGold,9.99,3.8,0.62
+GFV-F003,Plantain Flour,Flours,Fruit,MillGold,7.99,3.2,0.6
+GFV-O001,Red Palm Oil,Oils,Palm,NaturePress,14.99,5.5,0.633
+GFV-O002,Moringa Oil,Oils,Seed,NaturePress,29.99,10.0,0.666
+GFV-O003,Baobab Oil,Oils,Seed,NaturePress,34.99,13.0,0.628
+GFV-O004,Shea Butter Food Grade,Oils,Tree Nut,NaturePress,19.99,7.5,0.625
+GFV-N001,Macadamia Nuts,Nuts,Tree Nut,NutHarvest,24.99,10.0,0.6
+GFV-N002,African Groundnuts,Nuts,Legume,NutHarvest,8.99,3.5,0.61
+GFV-N003,Tiger Nuts,Nuts,Tuber,NutHarvest,11.99,4.5,0.625
+GFV-A001,Peri-Peri Sauce,Sauces,Hot Sauce,FlavorWorks,7.99,2.8,0.65
+GFV-A002,Suya Marinade,Sauces,Marinade,FlavorWorks,8.99,3.2,0.644
+GFV-A003,Jerk Seasoning Sauce,Sauces,Marinade,FlavorWorks,9.49,3.5,0.631
+GFV-A004,Harissa Paste,Sauces,Paste,FlavorWorks,6.99,2.5,0.642
+GFV-G001,Fonio Grain,Grains,Ancient Grain,TerraGrain,13.99,5.0,0.642
+GFV-G002,Sorghum Grain,Grains,Cereal,TerraGrain,7.99,3.0,0.625
+GFV-G003,Millet Grain,Grains,Cereal,TerraGrain,6.99,2.8,0.6
